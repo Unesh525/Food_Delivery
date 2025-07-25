@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-commerce Admin Dashboard</title>
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      overflow-x: hidden;
+    }
+    .sidebar {
+      min-width: 250px;
+      max-width: 250px;
+      background-color: #343a40;
+      color: white;
+      min-height: 100vh;
+    }
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      padding: 15px;
+    }
+    .sidebar a:hover {
+      background-color: #495057;
+    }
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+    .navbar {
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h3 class="text-center py-3">Admin Panel</h3>
+    <a href="../Home/">Dashboard</a>
+    <a href="../AdminReg/">Admin Register</a>
+    <a href="../ShowAdmins/">Show Admin</a>
+    <a href="../UserReg/">User Register</a>
+    <a href="../AdminHome/">Profile</a>
+
+    <a href="../ShowUser/">Show User</a>
+    <a href="../AddItem/">Add Item</a>
+    <a href="../ShowItem/">Show Item</a>
+  <a href="../logout/">Logout</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand navbar-light mb-4">
+      <div class="container-fluid">
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Notifications</a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+
+
+    <!-- Orders Table -->
+{% block A1 %}
+ {% endblock %}
+
+  <script src="bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

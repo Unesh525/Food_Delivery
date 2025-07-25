@@ -1,0 +1,18 @@
+
+{% extends 'admindash.html' %}
+{% load static %}
+{% block A1 %}
+<H1>Add Balance</H1>
+<form action="../AddBalance1/" method="POST">
+    {% csrf_token %}
+    <p><input type="hidden" name="T1" value="{{e1}}"></p>
+    <p>Amount  : <input type="text" name="T2"></p>
+    <p>Date : <input type="date"  id="date" name="T3"></p>
+    <p>Remark : <input type="text" name="T4"></p>
+    <input type="submit" class="btn btn-block btn-primary"  value="Add"/>
+</form>
+ <script>
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('date').value = today;
+  </script>
+{% endblock %}

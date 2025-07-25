@@ -1,0 +1,16 @@
+{% extends 'admindash.html' %}
+{% load static %}
+{% block A1 %}
+<h1>Upload Photo</h1>
+{% if email %}
+    <p>{{email}}</p>
+{% endif %}
+    <form method="post" action="../AdminPhotoUpload1/" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file"  name="F1" accept="image/*">
+        <p><input type="submit" class="btn btn-block btn-success mt-3" value="Upload" name="B1"></p>
+    </form>
+{% if msg %}
+    <p>{{msg}}</p>
+{% endif %}
+{% endblock %}

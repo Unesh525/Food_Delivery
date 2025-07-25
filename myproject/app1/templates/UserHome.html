@@ -1,0 +1,102 @@
+{% extends 'userdash.html' %}
+{% load static %}
+{% block U1 %}
+
+<style>
+       .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+    .profile-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 100px;
+    }
+    .profile-img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+    .profile-table td {
+        border: none;
+        padding: 6px 10px;
+        font-size: 1rem;
+    }
+    .profile-actions {
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container my-5">
+    <div class="profile-row">
+
+        <!-- Profile Photo Section -->
+        <div class="text-center">
+            {% if data1 %}
+                {% for i in data1 %}
+                    <img src="../media/{{ i.photo }}" class="img-thumbnail mb-3 profile-img" alt="Profile Photo">
+                    <form method="POST" action="../UserPhotoUpload/">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary w-100">Change Photo</button>
+                    </form>
+                {% endfor %}
+            {% else %}
+                <form method="POST" action="../UserPhotoUpload/">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary mt-5 w-100">Upload Photo</button>
+                </form>
+            {% endif %}
+        </div>
+
+        <!-- Profile Details Section -->
+        <div class="col-md-8">
+            {% if data %}
+                {% for d in data %}
+                    <table class="table profile-table">
+                        <tr>
+                            <td><strong>Name:</strong></td>
+                            <td>{{d.name}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Address:</strong></td>
+                            <td>{{d.address}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contact:</strong></td>
+                            <td>{{d.contact}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email:</strong></td>
+                            <td>{{d.email}}</td>
+                        </tr>
+                    </table>
+
+                    <div class="profile-actions">
+                        <form action="../EditUserProfile/" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="T1" value="{{d.email}}">
+                            <button type="submit" class="btn btn-warning">Edit Profile</button>
+                        </form>
+
+                        <form action="../ChangeUserPassword/" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="T1" value="{{d.email}}">
+                            <button type="submit" class="btn btn-secondary">Change Password</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <hr class="my-4">
+</div>
+
+{% endblock %}

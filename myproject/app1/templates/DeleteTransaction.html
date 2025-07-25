@@ -1,0 +1,19 @@
+{% extends 'admindash.html' %}
+{% load static %}
+{% block A1 %}
+<h1>Delete Transaction </h1>
+{% if data %}
+<form action="../DeleteTransaction1/" method="POST">
+    {% csrf_token %}
+    {% for d in data %}
+    <p><input type="hidden" name="T1" value="{{e1}}"></p>
+    <p><input type="hidden" value="{{d.id}}" name="T1"></p>
+    <p>Amount  : <input type="text" value="{{d.amount}}" name="T2" readonly></p>
+    <p>Date : <input type="date" value="{{d.date}}"   id="date" name="T3" readonly></p>
+    <p>Transaction : <input type="text" value="{{d.transaction}}" name="T4" readonly></p>
+    <p>Remark : <input type="text" value="{{d.remark}}" name="T5" readonly></p>
+    <input type="submit" class="btn btn-block btn-danger"  value="Delete"/>
+    {% endfor %}
+</form>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'admindash.html' %}
+{% load static %}
+{% block A1 %}
+<h1>Add Item </h1>
+<form method="POST" action="../AddItem1/" enctype="multipart/form-data">
+    {%  csrf_token %}
+    <p>Item Name : <input type="text" name="T1" required></p>
+    <p>Item Description : <input type="text" name="T2" required></p>
+    <p>Item Price : <input type="text" name="T3" required></p>
+    <p>Upload item Photo : <input type="file" name="F1" accept="image/*"></p>
+    <input type="submit" class="btn btn-block btn-primary" value="Add Item">
+</form>
+{% if msg %}
+    {{msg}}
+{% endif %}
+{% endblock %}

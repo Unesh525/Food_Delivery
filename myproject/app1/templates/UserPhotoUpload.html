@@ -1,0 +1,18 @@
+{% extends 'userdash.html' %}
+{% load static %}
+{% block U1 %}
+{% if email %}
+{% endif %}
+<p style="margin-top:100px;text-align:center; font-size:30px;">Upload Photo</p>
+<center><div class="container w-25 " style="margin-top:50px;">
+    <form method="post" action="../UserPhotoUpload1/" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="F1" class="form-control " style="width:200px;" accept="image/*">
+        <p><input type="submit" class="btn btn-block btn-primary" style="margin-top:20px;width:100px;" value="Upload" name="B1"></p>
+    </form>
+    </div>
+    </center>
+{% if msg %}
+    <p>{{msg}}</p>
+{% endif %}
+{% endblock %}

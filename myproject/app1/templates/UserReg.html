@@ -1,0 +1,23 @@
+{% extends 'admindash.html' %}
+{% load static %}
+{% block A1 %}
+<h1>User Registration</h1>
+
+<form method="post" action="../UserReg/">
+    {% csrf_token %}
+    <p>Name : <input type="text" name="T1" required></p>
+    <p>Address : <input type="text" name="T2" required></p>
+    <p>Contact : <input type="text" name="T3" required></p>
+    <p>Email : <input type="text" name="T4" required></p>
+    <p>Password : <input type="text" name="T5" required></p>
+    <p>Confirm Password : <input type="text" name="T6" required></p>
+    <input type="submit" class="btn btn-block btn-primary" value="Register">
+</form>
+<p>
+    {% if msg %}
+    {{msg}}
+    {% elif msg1 %}
+    {{msg1}}}
+    {% endif %}
+</p>
+{% endblock %}

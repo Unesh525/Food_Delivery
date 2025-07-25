@@ -1,0 +1,55 @@
+{% extends 'admindash.html' %}
+{% load static %}
+{% block A1 %}
+
+<div class="container my-4">
+
+  {% if data1 %}
+    {% for i in data1 %}
+      <div class="text-center mb-3">
+        <img src="../media/{{ i.photo }}" class="img-thumbnail rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
+      </div>
+      <form method="POST" action="../AdminPhotoUpload/" class="text-center">
+        {% csrf_token %}
+        <input type="hidden" name="" value="{{d.email}}">
+        <button type="submit" class="btn btn-primary">Change Photo</button>
+      </form>
+    {% endfor %}
+  {% else %}
+    <form method="POST" action="../AdminPhotoUpload/" class="text-center">
+      {% csrf_token %}
+      <input type="hidden" name="" value="{{d.email}}">
+      <button type="submit" class="btn btn-success">Photo Upload</button>
+    </form>
+  {% endif %}
+
+  {% if data %}
+    {% for d in data %}
+      <div class="card mt-4">
+        <div class="card-body">
+          <h5 class="card-title">{{ d.name }}</h5>
+          <p class="card-text"><strong>Address:</strong> {{ d.address }}</p>
+          <p class="card-text"><strong>Contact:</strong> {{ d.contact }}</p>
+          <p class="card-text"><strong>Email:</strong> {{ d.email }}</p>
+
+          <div class="d-flex gap-2">
+            <form action="../EditAdminProfile/" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="T1" value="{{d.email}}">
+              <button type="submit" class="btn btn-warning">Edit Profile</button>
+            </form>
+
+            <form action="../ChangeAdminPassword/" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="T1" value="{{d.email}}">
+              <button type="submit" class="btn btn-danger">Change Password</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+</div>
+
+{% endblock %}

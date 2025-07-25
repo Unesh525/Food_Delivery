@@ -1,0 +1,35 @@
+{% extends 'admindash.html' %}
+{% load static %}
+{% block A1 %}
+{% if data %}
+<div class="card">
+    <div class="card-header">
+        Show Admin
+    </div>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Contact</th>
+        <th>Email</th>
+    </tr>
+            </thead>
+            <thead>
+    {% for d in data %}
+    <tr>
+        <td>{{d.name}}</td>
+        <td>{{d.address}}</td>
+        <td>{{d.contact}}</td>
+        <td>{{d.email}}</td>
+    </tr>
+    </thead>
+    {% endfor %}
+</table>
+    </div>
+</div>
+{%  elif not data %}
+    <p>Not Data Found</p>
+{% endif %}
+{% endblock %}

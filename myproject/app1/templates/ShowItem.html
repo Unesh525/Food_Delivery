@@ -1,0 +1,51 @@
+{% extends 'admindash.html' %}
+{% load static %}
+{% block A1 %}
+{% if data %}
+<div class="card">
+    <div class="card-header">
+        Show Item
+    </div>
+    <div class="card-body">
+        <table class="table   table-hover ">
+            <thead class="thead-light  ">
+    <tr >
+        <th>Item Name </th>
+        <th>Item Description</th>
+        <th>Item Price</th>
+        <th >Photo</th>
+        <th >Action</th>
+    </tr>
+     </thead>
+            <tbody>
+    {% for d in data %}
+    <tr>
+        <td>{{ d.item_name }}</td>
+        <td>{{ d.item_description }}</td>
+        <td>{{ d.item_price }}</td>
+        <td><img src="../media/{{ d.photo }}" width="40px"></td>
+        <td class="d-flex gap-3 ">
+            <form action="../EditItem/" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="T1" value="{{d.item_name }}">
+                <input type="submit" class="btn btn-block btn-success" value="Edit">
+            </form>
+            <form action="../DeleteItem/" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="T1" value="{{d.item_name }}">
+                <input type="submit" class="btn btn-block btn-danger" value="Delete">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+         </tbody>
+        </table>
+    </div>
+</div>
+
+
+{%  endif %}
+{% if msg %}
+    {{msg}}
+{%  endif %}
+{% endblock %}

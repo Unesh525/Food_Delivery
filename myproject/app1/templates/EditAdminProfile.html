@@ -1,0 +1,20 @@
+{% extends 'admindash.html' %}
+{% load static %}
+{% block A1 %}
+<h1>Edit Admin</h1>
+<form action="../EditAdminProfile1/" method="POST">
+  {% csrf_token %}
+    {% if data %}
+        {% for d in data %}
+          <p>Name : <input type="text" value="{{d.name}}" name="T1"></p>
+          <p>Address : <input type="text"  value="{{d.address}}" name="T2"></p>
+          <p>Contact : <input type="text"  value="{{d.contact}}" name="T3"></p>
+          <p>Email : <input type="text"  value="{{d.email}}" name="T4" readonly></p>
+          <p><input type="submit" class="btn btn-block btn-primary" value="Save & change"></p>
+        {% endfor %}
+    {% endif %}
+</form>
+{% if msg  %}
+  <p>{{msg}}</p>
+{% endif %}
+{% endblock %}

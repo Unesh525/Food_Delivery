@@ -1,0 +1,70 @@
+{% extends 'admindash.html' %}
+{% load static %}
+{% block A1 %}
+{% if data %}
+<script>
+    window.onload = function(){
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').value = today;
+    }
+</script>
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        Order
+
+    </div>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>User Email</th>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>Order Date</th>
+                <th>Quantity</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <thead>
+            {% for d in data %}
+            <tr>
+                <td>{{d.order_id}}</td>
+                <td>{{d.user_email}}</td>
+                <td>{{d.item_name}}</td>
+                <td>&#8377;{{d.price}}</td>
+                <td>{{d.order_date}}</td>
+                <td>{{d.quantity}}</td>
+                <td class="d-flex gap-3">
+                    {% if d.request == 'Success ✔' %}
+                    <p class="text-success">Confirmed ✔</p>
+                    {% elif d.request == 'Faild ❌' %}
+                    <p class="text-danger">Rejected ❌</p>
+                    {% else %}
+                    <form action="../Confirm/" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="T1" value="{{d.order_id}}">
+                        <input type="submit" class="btn btn-block btn-primary" value="Confirm">
+                    </form>
+                    <form action="../Reject/" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="T1" value="{{d.order_id}}">
+                        <input type="hidden" name="T2" value="{{d.price}}">
+                        <input type="hidden" name="T3" value="{{d.quantity}}">
+                        <input type="hidden" name="T4" id="date" value="">
+                        <input type="submit" class="btn btn-block btn-danger" value="Reject">
+                    </form>
+                    {% endif %}
+
+                </td>
+            </tr>
+            {% endfor %}
+            </thead>
+        </table>
+    </div>
+</div>
+
+{% elif msg %}
+<h1>{{msg}}</h1>
+{% endif %}
+{% endblock %}

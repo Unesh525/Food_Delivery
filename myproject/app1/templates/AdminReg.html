@@ -1,0 +1,18 @@
+{% extends 'admindash.html' %}
+{% load static %}
+{% block A1 %}
+<h1>Admin Regitser</h1>
+<form action="../AdminReg/" method="POST">
+  {% csrf_token %}
+  <p>Name : <input type="text" name="T1"></p>
+  <p>Address : <input type="text" name="T2"></p>
+  <p>Contact : <input type="text" name="T3"></p>
+  <p>Email : <input type="text" name="T4"></p>
+  <p>Password  : <input type="text" name="T5"></p>
+  <p>Confirm Password : <input type="text" name="T6"></p>
+  <p><input type="submit"></p>
+</form>
+{% if msg  %}
+  <p>{{msg}}</p>
+{% endif %}
+{% endblock %}

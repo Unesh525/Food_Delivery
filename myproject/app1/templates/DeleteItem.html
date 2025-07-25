@@ -1,0 +1,20 @@
+{% extends 'admindash.html' %}
+{% load static %}
+{% block A1 %}
+<h1>DeleteItem </h1>
+{% if data %}
+{% for d in data %}
+<form method="POST" action="../DeleteItem1/" enctype="multipart/form-data">
+    {%  csrf_token %}
+    <p>Item Name : <input type="text" value="{{d.item_name}}" name="T1" required readonly></p>
+    <p>Item Description : <input type="text" value="{{d.item_description}}"  name="T2" required readonly></p>
+    <p>Item Price : <input type="text" name="T3" value="{{d.item_price}}"  required readonly></p>
+    <p>Upload item Photo  : <input type="file" name="F1" accept="image/*" value="{{d.photo}}"  readonly></p>
+    <input type="submit" class="btn btn-block btn-danger" value="Delete Item">
+</form>
+{% endfor %}
+{% endif %}
+{% if msg %}
+    {{msg}}
+{% endif %}
+{% endblock %}

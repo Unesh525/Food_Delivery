@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block M1 %}
+<style>
+    body
+    {
+        background-image: url("{% static 'images/login.jpg' %}");
+        background-repeat: no-repeat;
+        height: 75vh;
+        background-size: cover;
+    }
+    @media (width:768px) {
+      .vb {
+        width: 50%;
+        margin-left:200px;
+      }
+    }
+    @media (width:1024px) {
+      .vb {
+        width: 50%;
+        margin-left:270px;
+      }
+    }
+    @media (width:1024px) {
+      .vb {
+        width: 50%;
+        margin-left:270px;
+      }
+    }
+    @media (width:1440px) {
+      .vb {
+        width: 50%;
+        margin-left:300px;
+      }
+    }
+    @media (min-width:1200px) {
+        .col-md-6{
+            margin-left:300px;
+        }
+    }
+
+</style>
+
+
+<div class="container mb-5 " style="margin-top:150px;margin-bottom:100px;">
+    <div class="row justify-content-center ">
+        <div class="col-md-6 vb  " style="backdrop-filter: blur(10px);">
+            <p class="text-center top-title " style="font-size:50px; color:white;">Login</p>
+            <form id="loginForm" action="../login/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email"  style="color:white;">Email</label>
+                    <input type="text" class="form-control" name="T1" id="email" placeholder="Enter username"
+                           required>
+                </div>
+                <div class="forpy-group ">
+                    <label for="password" style="color:white;">Password</label>
+                    <input type="password" class="form-control" name="T2" id="password" placeholder="Enter password"
+                           required>
+                </div>
+
+                <div class="form-group" style="margin-top:30px;">
+                    <button type="submit" class="btn btn-success btn-block">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% if msg %}
+{{msg}}
+{% endif %}
+{% endblock %}

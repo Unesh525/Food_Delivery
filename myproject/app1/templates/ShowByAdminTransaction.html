@@ -1,0 +1,49 @@
+{% extends 'admindash.html' %}
+{% load static %}
+{% block A1 %}
+
+{% if data %}
+<div class="card">
+    <div class="card-header">
+       Show Transaction
+    </div>
+    <div class="card-body">
+        <table class="table ">
+            <thead>
+  <tr>
+    <th>Id</th>
+    <th>Amount</th>
+    <th>Date</th>
+    <th>Transaction</th>
+    <th>Remark</th>
+    <th>Action</th>
+  </tr>
+            </thead>
+            <thead>
+  {% for d in data %}
+  <tr>
+    <td>{{d.id}}</td>
+    <td>{{d.amount}}</td>
+    <td>{{d.date}}</td>
+    <td>{{d.transaction}}</td>
+    <td>{{d.remark}}</td>
+    <td class="d-flex gap-3">
+       <form action="../EditTransaction/" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="T1" value="{{d.id}}" />
+                <input type="submit" class="btn btn-block btn-success"  value="Edit"/>
+            </form>
+             <form action="../DeleteTransaction/" method="post">
+                 {%  csrf_token %}
+                 <input type="hidden" name="T1" value="{{d.id}}" />
+                <input type="submit" class="btn btn-block btn-danger"   value="delete"/>
+            </form>
+    </td>
+  </tr>
+  {% endfor %}
+            </thead>
+</table>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,139 @@
+{% extends 'userdash.html' %}
+{% load static %}
+{% block U1 %}
+<style>
+
+    .p {
+        text-align: center;
+        margin-top: 100px;
+        margin-bottom: 30px;
+        font-size: 2rem;
+    }
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .price-tag {
+        color: #27ae60;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    form {
+        margin-top: auto;
+    }
+    .input-group {
+        display: flex;
+        align-items: center;
+    }
+    .input-group button {
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        background: #eee;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+    .input-group button:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+    .input-group input {
+        width: 40px;
+        text-align: center;
+        border: 1px solid #ccc;
+        padding: 5px;
+    }
+    .total-payment {
+        text-align: right;
+        margin-top: 30px;
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+    .pay-btn {
+        display: inline-block;
+        background: #28a745;
+        color: white;
+        padding: 10px 20px;
+        margin-top: 10px;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    .pay-btn:hover {
+        background: #218838;
+    }
+    .empty-cart {
+        text-align: center;
+        margin-top: 50px;
+    }
+    .empty-cart img {
+        opacity: 0.7;
+        width: 220px;
+        margin-bottom: 20px;
+    }
+    .empty-cart p {
+        font-size: 1.2rem;
+    }
+    .start-shopping {
+        background: #007bff;
+        color: white;
+        padding: 8px 15px;
+        text-decoration: none;
+        border-radius: 4px;
+        margin-left: 10px;
+    }
+    .start-shopping:hover {
+        background: #0056b3;
+    }
+</style>
+<h1>Orders</h1>
+{% if data %}
+<div class="card" style="margin-top: 100px;">
+    <div class="card-header text-center mb-3 " style="font-size: 20px;font-weight: bold;">
+        <h2 class="text-center mb-5">Order Details</h2>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Order Date</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <thead>
+            {% for d in data %}
+            <tr>
+                <td>{{d.order_id}}</td>
+                <td>{{d.item_name}}</td>
+                <td>&#8377;{{d.price}}</td>
+                <td>{{d.quantity}}</td>
+                <td>{{d.order_date}}</td>
+                <td>
+                    {{d.request}}
+                </td>
+            </tr>
+            {% endfor %}
+            </thead>
+        </table>
+
+
+    </div>
+</div>
+{% else %}
+
+<div class="empty-cart">
+    <p class="p">You have no Order.<br><br> <a href="../Product/" class="start-shopping">Start Shopping</a></p>
+</div>
+{% endif %}
+
+{% if msg %}
+<div class="alert alert-info mt-3 text-center">{{msg}}</div>
+{% endif %}
+
+
+{% endblock %}
