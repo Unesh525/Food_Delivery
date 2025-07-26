@@ -3,8 +3,8 @@ from pathlib import Path
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-ROOT_URLCONF = 'myproject.urls'
-WSGI_APPLICATION = 'myproject.wsgi.application'
+ROOT_URLCONF = 'Food_Delivery.urls'
+WSGI_APPLICATION = 'Food_Delivery.wsgi.application'
 
 # 🔽 Static Files Settings
 STATIC_URL = '/static/'
