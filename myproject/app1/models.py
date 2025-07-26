@@ -41,15 +41,16 @@ class userdata(models.Model):
     balance = models.IntegerField()
     def __str__(self):
         return self.email
-
+        
 class itemdata(models.Model):
-    item_name = models.CharField(max_length=100)  # remove primary_key=True
+    item_name = models.CharField(max_length=100, unique=True)
     item_description = models.CharField(max_length=100)
     photo = models.CharField(max_length=100)
     item_price = models.IntegerField()
 
     def __str__(self):
         return self.item_name
+
 
 
 class cartdata(models.Model):
