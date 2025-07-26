@@ -60,3 +60,6 @@ TEMPLATES = [
     },
 ]
 
+DEBUG = True
+
+
