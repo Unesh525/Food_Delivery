@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: food-delivery
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py migrate
+    startCommand: gunicorn myproject.wsgi:application
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: fooddelivery-db
+          property: connectionString
