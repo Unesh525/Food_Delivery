@@ -6,10 +6,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ROOT_URLCONF = 'myproject.urls'
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
+
 # 🔽 Static Files Settings
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-key-for-dev')
+
 
 # 🔽 Installed Apps
 INSTALLED_APPS = [
