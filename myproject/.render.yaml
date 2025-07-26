@@ -1,7 +1,11 @@
+
+
+
 services:
   - type: web
     name: food-delivery-app
     env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn myproject.wsgi:application"
-    autoDeploy: true
+    buildCommand: |
+      pip install -r requirements.txt
+      python migrate.py
+    startCommand: gunicorn myproject.wsgi:application
