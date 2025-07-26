@@ -47,7 +47,6 @@ class itemdata(models.Model):
     item_description = models.CharField(max_length=100)
     photo = models.CharField(max_length=100)
     item_price = models.IntegerField()
-
     def __str__(self):
         return self.item_name
 
