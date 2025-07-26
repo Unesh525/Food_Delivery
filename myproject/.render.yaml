@@ -1,9 +1,5 @@
-services:
-  - type: web
-    name: food-delivery
-    env: python
-    buildCommand: |
-      pip install -r requirements.txt
-      python manage.py makemigrations --noinput
-      python manage.py migrate --noinput
-    startCommand: gunicorn myproject.wsgi:application
+buildCommand: |
+  pip install -r requirements.txt
+  python manage.py makemigrations
+  python manage.py migrate
+startCommand: "gunicorn myproject.wsgi:application"
