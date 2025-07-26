@@ -41,9 +41,14 @@ MIDDLEWARE = [
 
 # 🔽 Database (Render PostgreSQL)
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv("DATABASE_URL")
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'food_delivery_db_j3ky',
+        'USER': 'food_delivery_user',
+        'PASSWORD': 'pk7MEVGqOlIL23QOONMBJyI81hWiOv4I',
+        'HOST': 'dpg-d21n15nfte5s73fqlbo0-a.oregon-postgres.render.com',
+        'PORT': '5432',
+    }
 }
 
 
