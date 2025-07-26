@@ -3,6 +3,7 @@ from pathlib import Path
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+ROOT_URLCONF = 'food_delivery.urls'
 
 # 🔽 Static Files Settings
 STATIC_URL = '/static/'
