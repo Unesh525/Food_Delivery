@@ -6,4 +6,4 @@ services:
       pip install -r requirements.txt
       python manage.py makemigrations --noinput
       python manage.py migrate --noinput
-    startCommand: gunicorn yourprojectname.wsgi:application
+    startCommand: gunicorn myproject.wsgi:application
